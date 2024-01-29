@@ -53,3 +53,9 @@ export function checkGuess(guess, answer) {
 
   return result;
 }
+
+export function checkGuessIsCorrect(guessresult) {
+  const correctLetters = guessresult.filter(item => item.status === 'correct');
+
+  return correctLetters.length === guessresult.length;
+}
