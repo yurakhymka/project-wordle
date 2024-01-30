@@ -56,11 +56,13 @@ function Game() {
     return true;
   }
 
+  const isAllAtemptsUsed = () => guessResult.length === NUM_OF_GUESSES_ALLOWED;
+
   return <>
       {gameIsWin && <HappyBanner attempts={guessResult.length}/>}
-      {(!gameIsWin && guessResult.length === NUM_OF_GUESSES_ALLOWED) && <SadBanner answer={answer}/>}
+      {(!gameIsWin && isAllAtemptsUsed()) && <SadBanner answer={answer}/>}
       <GuessResult answer={answer} guessResultList={guessResult}/>
-      <GuessForm isAttemptEnd={gameIsWin || guessResult.length === NUM_OF_GUESSES_ALLOWED} onGuessFormSubmit={onGuessFormSubmit}/>
+      <GuessForm isAttemptEnd={gameIsWin || isAllAtemptsUsed()} onGuessFormSubmit={onGuessFormSubmit}/>
     </>;
 }
 
